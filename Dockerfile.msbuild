@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/dotnet/framework/sdk:4.7.2
 WORKDIR /app
 
 COPY FontDumpTruck/ .
-RUN nuget restore .
-RUN msbuild /p:Configuration=Release /p:OutputPath=C:\app\out\
+RUN nuget restore FontDumpTruck.sln
+RUN msbuild FontDumpTruck.sln /p:Configuration=Release /p:OutputPath=C:\app\out\
 
-ENTRYPOINT ["/app/out/FontDumpTruck.exe"]
+ENTRYPOINT ["C:\\app\\out\\FontDumpTruck.exe"]
