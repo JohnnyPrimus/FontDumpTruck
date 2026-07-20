@@ -6,6 +6,9 @@ on:
       - master
       - releases/*
 
+permissions:
+  contents: read
+
 jobs:
   #build-dotnet:
   #  name: Build dotnet
