@@ -16,7 +16,7 @@
     <PackageProjectUrl>https://github.com/LandoFi/FontDumpTruck</PackageProjectUrl>
     <RepositoryUrl>https://github.com/LandoFi/FontDumpTruck</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
-    <PackageIcon>https://github.com/LandoFi/FontDumpTruck/master/FontDumpTruck.gif</PackageIcon>
+    <PackageIcon>https://github.com/LandoFi/FontDumpTruck/master/FontDumpTruck.png</PackageIcon>
     <PackageTags>fonts image utility glyph application windows</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
