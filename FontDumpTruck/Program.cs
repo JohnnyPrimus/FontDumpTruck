@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Imaging;
+using System.Dynamic;
 using System.IO;
 using System.Drawing.Text;
 using System.Security.Cryptography;
 using System.Text;
 using System.Linq;
 using System.IO.Ports;
+using System.Drawing.Imaging;
 
 namespace FontDumpTruck
 {
@@ -65,6 +66,12 @@ namespace FontDumpTruck
 
         static void Main(string[] args)
         {
+            if (!OperatingSystem.IsWindows() || !OperatingSystem.IsWindowsVersionAtLeast(10))
+            {
+                Console.WriteLine($"Must be running on Windows 10 or later to enumerate installed fonts. Exiting.");
+                return;
+            }
+
             if (args.Length > 0)
             {
                 var flag = args[0];
@@ -196,7 +203,7 @@ namespace FontDumpTruck
 
         private static void PopulateEnumeratedFontList()
         {
-            using (InstalledFontCollection installedFonts = new InstalledFontCollection())
+            using (InstalledFontCollection installedFonts = new())
             {
                 int i = 1;
 
