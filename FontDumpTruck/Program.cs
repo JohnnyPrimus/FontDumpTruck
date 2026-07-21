@@ -1,13 +1,7 @@
-using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Dynamic;
-using System.IO;
 using System.Drawing.Text;
 using System.Security.Cryptography;
 using System.Text;
-using System.Linq;
-using System.IO.Ports;
 using System.Drawing.Imaging;
 
 namespace FontDumpTruck
