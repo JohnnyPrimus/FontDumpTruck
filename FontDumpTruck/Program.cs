@@ -61,8 +61,9 @@ namespace FontDumpTruck
         static ImageFormat OutputImageFormat = ImageFormat.Png;
         static readonly string OutputImageFileSuffix = OutputImageFormat.ToString().ToLower();
 
-        static readonly int asciiCharStart;
-        static readonly int asciiCharStop = 65535;
+        //Unicode range to dump, 20-FFFF
+        static readonly int unicodeCharStart = 20;
+        static readonly int unicodeCharStop = 65535;
 
         static void Main(string[] args)
         {
@@ -100,9 +101,19 @@ namespace FontDumpTruck
                   
                     FontsToDump = new List<string> { EnumeratedFontList[parsedInput] };
                 }
+                else
+                {
+                    DisplayUsage();
+                    return;
+                }
+            }
+            else
+            {
+                DisplayUsage();
+                return;
             }
 
-            if (!EmPointsImageSizeMap.Where(e => e.WriteOutput).Any())
+            if (!EmPointsImageSizeMap.Any(e => e.WriteOutput))
             {
                 Console.WriteLine($"No image sizes to write out selected");
                 return;
@@ -111,6 +122,19 @@ namespace FontDumpTruck
             ActiveImageSizes.Add(EmPointsImageSizeMap.Where(e => e.ImageSize == 16).SingleOrDefault());
             ActiveImageSizes.AddRange(EmPointsImageSizeMap.Skip(1).Where(e => e.WriteOutput));
 
+           DumpImagesFromGlyphs(ActiveImageSizes, FontsToDump);
+
+            Console.WriteLine($"Done. Written {ActiveImageSizes.Where(e => e.WriteOutput).Count()} image sizes for {FontsToDump.Count} fonts.");
+        }
+
+        private static void DisplayUsage()
+        {
+            Console.WriteLine($"FontDumpTruck.exe [-i]");
+            Console.WriteLine($"  -i : Enumerate installed fonts and prompt for font to dump");
+        }
+
+        private static void DumpImagesFromGlyphs(List<ExportDefinition> ActiveImageSizes, List<string> FontsToDump)
+        {
             var writtenImages = 0;
             var processedImages = 0;
 
@@ -134,7 +158,7 @@ namespace FontDumpTruck
 
                     //this was a quick and super dirty test app, probably a better way to do this by enumerating all
                     //chars present in a .ttf
-                    for (int i = asciiCharStart; i <= asciiCharStop; i++)
+                    for (int i = unicodeCharStart; i <= unicodeCharStop; i++)
                     {
                         var fontEmPoints = emPointAndImageSize.EmValue;
                         var imageSize = emPointAndImageSize.ImageSize;
