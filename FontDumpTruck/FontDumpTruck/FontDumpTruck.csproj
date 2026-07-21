@@ -36,4 +36,9 @@
   <ItemGroup>
     <PackageReference Include="System.Drawing.Common" Version="10.0.10" />
   </ItemGroup>
+
+   <ItemGroup>
+    <!-- Explicitly pack the physical file into the root of the package -->
+    <None Include="..\FontDumpTruck.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
 </Project>
