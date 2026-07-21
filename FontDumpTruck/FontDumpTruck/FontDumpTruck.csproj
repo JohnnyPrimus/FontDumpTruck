@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Version>0.1.1</Version>
+    <AssemblyVersion>0.1.1.0</AssemblyVersion>
+	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <FileVersion>0.1.1.0</FileVersion>
+    <Title>FontDumpTruck</Title>
+    <Authors>Leland Olney</Authors>
+	<Company>LandoFi</Company>
+    <Description>FontDumpTruck is a .NET app that easily dumps all glyphs from an installed font to individual image files in multiple sizes.</Description>
+    <Copyright>Copyright (C) 2019 by Leland Olney</Copyright>
+    <PackageLicenseUrl>https://github.com/LandoFi/FontDumpTruck/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/LandoFi/FontDumpTruck</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/LandoFi/FontDumpTruck</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageIcon>FontDumpTruck.png</PackageIcon>
+    <PackageTags>fonts image utility glyph application windows</PackageTags>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="10.0.10" />
+  </ItemGroup>
+
+   <ItemGroup>
+    <!-- Explicitly pack the physical file into the root of the package -->
+    <None Include="..\FontDumpTruck.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+</Project>
