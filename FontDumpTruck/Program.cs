@@ -12,15 +12,15 @@ using System.Drawing.Imaging;
 
 namespace FontDumpTruck
 {
-    class ExportDefinition
+    public class ExportDefinition
     {
         public float EmValue { get; set; }
         public int ImageSize { get; set; }  
         public bool WriteOutput { get; set; }
     }
-    class Program
+    public static class Program
     {
-        static HashSet<string> EmptyCharacterShaHashes = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+        static readonly HashSet<string> EmptyCharacterShaHashes = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
             "2f070d7b8728981a31c17be423fd02119041809abf58bd2b98e2d96a4a71c874", //16x16 missing
             "5016a323018f09e292165ad5392d82dcbad5e79c2b6b93aff3322dffff80b309", //16x16 empty
@@ -31,7 +31,7 @@ namespace FontDumpTruck
             "4cb3cb49e25294803a68734b331fd161c6824bfc8f907b8f458ab958628383ec", //16x16 via em point resize
         };
 
-        static List<ExportDefinition> EmPointsImageSizeMap = new List<ExportDefinition>
+        static readonly List<ExportDefinition> EmPointsImageSizeMap = new List<ExportDefinition>
         {
             new ExportDefinition { EmValue = 15.0f, ImageSize = 16, WriteOutput = false },
             new ExportDefinition { EmValue = 30.0f, ImageSize = 32, WriteOutput = false },
@@ -44,10 +44,10 @@ namespace FontDumpTruck
             new ExportDefinition { EmValue = 3840.0f, ImageSize = 4096, WriteOutput = false },
         };
 
-        static List<ExportDefinition> ActiveImageSizes = new List<ExportDefinition>();
+        static readonly List<ExportDefinition> ActiveImageSizes = new List<ExportDefinition>();
 
-        static HashSet<int> SkippedCharacterIndexes = new HashSet<int>();
-        static HashSet<int> InvalidCharacterIndexes = new HashSet<int>();
+        static readonly HashSet<int> SkippedCharacterIndexes = new HashSet<int>();
+        static readonly HashSet<int> InvalidCharacterIndexes = new HashSet<int>();
 
         static List<string> FontsToDump = new List<string>
         {
@@ -56,13 +56,13 @@ namespace FontDumpTruck
             "Symbol"
         };
 
-        static Dictionary<int, string> EnumeratedFontList = new Dictionary<int, string>();
+        static readonly Dictionary<int, string> EnumeratedFontList = new Dictionary<int, string>();
 
         static ImageFormat OutputImageFormat = ImageFormat.Png;
         static readonly string OutputImageFileSuffix = OutputImageFormat.ToString().ToLower();
 
-        static int asciiCharStart = 0;
-        static int asciiCharStop = 65535;
+        static readonly int asciiCharStart;
+        static readonly int asciiCharStop = 65535;
 
         static void Main(string[] args)
         {
@@ -169,8 +169,8 @@ namespace FontDumpTruck
 
                         var img = DrawTextWithResize(currentCharacter.ToString(), font, fontEmPoints, imageSize, primaryColor, bgColor, i);
                         
-                        //TO-DO: Finalize the Em point reductions to keep entire character in-bounds
-                        //var img = DrawTextWithPointAdjust(currentCharacter.ToString(), font, fontName, fontEmPoints, imageSize, primaryColor, bgColor, i);
+                        //TO-DO: Finalize the Em point reductions to keep entire character 
+                        // in-bounds using DrawTextWithPointAdjust(currentCharacter.ToString(), font, fontName, fontEmPoints, imageSize, primaryColor, bgColor, i);
 
                         if (img == null)
                         {
@@ -368,7 +368,7 @@ namespace FontDumpTruck
 
             if (textSize.Width > imageSize || textSize.Height > imageSize)
             {
-                float fontEmPoints = (float)emSize;
+                float fontEmPoints = emSize;
                 while (true)
                 {
                     // first, create a dummy bitmap just to get a graphics object
