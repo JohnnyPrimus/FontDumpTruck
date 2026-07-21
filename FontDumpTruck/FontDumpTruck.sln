@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32901.82
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FontDumpTruck", "FontDumpTruck/FontDumpTruck.csproj", "{C9EC8C73-B426-41A3-8379-EBC8BB5F4BAF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{c9ec8c73-b426-41a3-8379-ebc8bb5f4baf}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{c9ec8c73-b426-41a3-8379-ebc8bb5f4baf}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{c9ec8c73-b426-41a3-8379-ebc8bb5f4baf}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{c9ec8c73-b426-41a3-8379-ebc8bb5f4baf}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D7B7E487-D5C0-49D0-A01C-408463871B36}
+	EndGlobalSection
+EndGlobal
